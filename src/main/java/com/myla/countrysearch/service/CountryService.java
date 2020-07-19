@@ -17,6 +17,7 @@ public class CountryService {
     public List<Country> getCountriesWithPopulationGreaterThan(Integer population) {
         return countryKeeper.getAllCountries()
                 .stream()
+                .filter(c -> c.getPopulation() != null)
                 .filter(c -> c.getPopulation() > population)
                 .collect(Collectors.toList());
     }
@@ -35,6 +36,7 @@ public class CountryService {
     public List<Country> getCountriesWithDensityLowerThan(int number) {
         return countryKeeper.getAllCountries()
                 .stream()
+                .filter(c -> c.getArea() != 0)
                 .filter(c -> c.getPopulation()/c.getArea() < number)
                 .collect(Collectors.toList());
     }
